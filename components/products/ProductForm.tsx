@@ -1,12 +1,17 @@
 import { prisma } from "@/src/lib/prisma"
 import ImageUpdate from "./ImageUpdate"
 
+
+type ProductFormProps = {
+    product?: Product
+}
+
 async function getCategories() {
     return await prisma.category.findMany()
 }
 
 
-export default async function ProductForm() {
+export default async function ProductForm({ product }: ProductFormProps) {
 
     const categories = await getCategories()
 
@@ -23,6 +28,7 @@ export default async function ProductForm() {
                     name="name"
                     className="block w-full p-3 bg-slate-100"
                     placeholder="Nombre Producto"
+                    defaultValue={product.name}
                 />
             </div>
 
@@ -36,6 +42,7 @@ export default async function ProductForm() {
                     name="price"
                     className="block w-full p-3 bg-slate-100"
                     placeholder="Precio Producto"
+                    defaultValue={product.price}
                 />
             </div>
 
@@ -54,12 +61,13 @@ export default async function ProductForm() {
                         <option
                             key={category.id}
                             value={category.id}
+                            defaultValue={product.categoryId}
                         >{category.name}</option>
                     ))}
                 </select>
             </div>
-            
-            <ImageUpdate />
+
+            <ImageUpdate image={product?.image} />
         </>
     )
 }
