@@ -18,8 +18,6 @@ export default function AddProductForm({ children }: { children: React.ReactNode
             image: formData.get('image')
         }
 
-        console.log('hi', data)
-
         const result = ProductSchema.safeParse(data)
         if (!result.success) {
             result.error.issues.forEach(issue => {
@@ -29,7 +27,6 @@ export default function AddProductForm({ children }: { children: React.ReactNode
         }
 
         const response = await createProduct(result.data)
-        console.log('re', response)
         if (response?.errors) {
             response.errors.forEach(issue => {
                 toast.error(issue.message)

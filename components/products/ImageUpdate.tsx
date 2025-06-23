@@ -13,8 +13,7 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
     return (
         <CldUploadWidget
             onSuccess={(result, { widget }) => {
-                console.log('jk')
-                console.log('jk',result)
+             
                 if (result.event === 'success') {
                     widget.close()
                     //@ts-ignore
