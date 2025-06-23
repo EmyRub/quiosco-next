@@ -1,5 +1,6 @@
 import { prisma } from "@/src/lib/prisma"
 import ImageUpdate from "./ImageUpdate"
+import { Product } from "@prisma/client"
 
 
 type ProductFormProps = {
@@ -28,7 +29,7 @@ export default async function ProductForm({ product }: ProductFormProps) {
                     name="name"
                     className="block w-full p-3 bg-slate-100"
                     placeholder="Nombre Producto"
-                    defaultValue={product.name}
+                    defaultValue={product?.name}
                 />
             </div>
 
@@ -42,7 +43,7 @@ export default async function ProductForm({ product }: ProductFormProps) {
                     name="price"
                     className="block w-full p-3 bg-slate-100"
                     placeholder="Precio Producto"
-                    defaultValue={product.price}
+                    defaultValue={product?.price}
                 />
             </div>
 
@@ -52,16 +53,16 @@ export default async function ProductForm({ product }: ProductFormProps) {
                     htmlFor="categoryId"
                 >Categoría:</label>
                 <select
-                    className="block w-full p-3 bg-slate-100"
                     id="categoryId"
                     name="categoryId"
+                    defaultValue={product?.categoryId}
+                    className="block w-full p-3 bg-slate-100"
                 >
                     <option value="">-- Seleccione --</option>
                     {categories.map(category => (
                         <option
                             key={category.id}
                             value={category.id}
-                            defaultValue={product.categoryId}
                         >{category.name}</option>
                     ))}
                 </select>

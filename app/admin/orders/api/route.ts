@@ -1,5 +1,6 @@
 import { prisma } from "@/src/lib/prisma"
 
+//Consulta la api, obtiene productos
 export async function GET() {
     const orders = await prisma.order.findMany({
         where: {

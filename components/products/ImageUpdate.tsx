@@ -13,6 +13,8 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
     return (
         <CldUploadWidget
             onSuccess={(result, { widget }) => {
+                console.log('jk')
+                console.log('jk',result)
                 if (result.event === 'success') {
                     widget.close()
                     //@ts-ignore
@@ -28,7 +30,7 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
                         <label className="text-slate-800">Imagen Producto</label>
 
                         <div
-                            onClick={() => open()}
+                            onClick={() => open?.()}
                             className="relative cursor-pointer hover:opacity-70 transition p-10 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600 bg-slate-100">
                             <TbPhotoPlus size={50}></TbPhotoPlus>
                             <p className="text-lg font-semibold">Agregar Imagen</p>
@@ -49,7 +51,7 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
                     {image && !imageUrl && (
                         <div className="space-y-2">
                             <label>Imagen Actual</label>
-                            <div className="relative-w-64 h-64">
+                            <div className="relative w-64 h-64">
                                 <Image
                                     fill
                                     alt="Imagen Producto"
@@ -62,7 +64,7 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
 
                     <input
                         type="hidden"
-                        name="Image"
+                        name="image"
                         defaultValue={imageUrl ? imageUrl : image}
                     />
                 </>

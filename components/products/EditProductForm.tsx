@@ -1,9 +1,8 @@
 "use client"
 import React from "react";
 import { toast } from "react-toastify";
-import { useParams, useRouter } from "next/navigation";
 import { ProductSchema } from "@/src/schema/zod";
-import { createProduct } from "@/actions/create-product-action";
+import { useParams, useRouter } from "next/navigation";
 import { updateProduct } from "@/actions/update-product-action";
 
 

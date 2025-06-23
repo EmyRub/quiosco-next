@@ -1,9 +1,9 @@
 "use client"
 
-import OrderCard from '@/components/order/OrderCard'
+import useSWR from 'swr'
 import Heading from '@/components/ui/Heading'
 import { OrderWithProducts } from '@/src/types'
-import useSWR from 'swr'
+import OrderCard from '@/components/order/OrderCard'
 
 
 export default function OrderPage() {
@@ -13,9 +13,11 @@ export default function OrderPage() {
     //Refresh automático
     const fetcher = () => fetch(url).then(res => res.json()).then(data => data)
     const { data, error, isLoading } = useSWR<OrderWithProducts[]>(url, fetcher, {
-        refreshInterval: 60000,
+        refreshInterval: 600,
         revalidateOnFocus: false
     })
+
+        console.log('de',data)
 
     if (isLoading) return <p>Cargando...</p>
 
