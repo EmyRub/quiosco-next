@@ -16,7 +16,7 @@ export default function ImageUpdate({ image }: { image: string | undefined }) {
              
                 if (result.event === 'success') {
                     widget.close()
-                    //@ts-ignore
+                    //@ts-expect-error
                     setImageUrl(result.info.secure_url)
                 }
             }}
